@@ -1,0 +1,44 @@
+{
+  "pets": [
+    {
+      "id": "1",
+      "name": "Yara",
+      "description": "My dog Yara. 2 months old. doggy hjkhjk",
+      "imageURL": "https://cdn1-www.dogtime.com/assets/uploads/2017/09/pit-bull-puppies-2.jpg",
+      "category": "dogs",
+      "likes": 5
+    },
+    {
+      "id": "2",
+      "name": "Koko",
+      "description": "This is my parrot Koko. He is one year old. He likes to sing a lot.",
+      "imageURL": "https://cdn.omlet.co.uk/images/originals/fischer's-lovebird.jpg",
+      "category": "parrots",
+      "likes": 213
+    },
+    {
+      "id": "3",
+      "name": "Spirit",
+      "description": "This is my horse Spirit. He is 5 years old. He likes to run around like crazy and go to horse races.",
+      "imageURL": "https://bransbyhorses.co.uk/wp-content/uploads/2016/03/Sophie.jpg",
+      "category": "other",
+      "likes": 6
+    },
+    {
+      "name": "Snakey",
+      "description": "snake",
+      "imageURL": "https://cdn.mos.cms.futurecdn.net/fM5sEN6qJUbCESCNZvg56n-1200-80.jpg",
+      "category": "reptiles",
+      "id": "cjaxnkb",
+      "likes": "4"
+    },
+    {
+      "name": "fsdfs",
+      "description": "fsdfsdfs",
+      "imageURL": "dfsdfdsfs",
+      "category": "cats",
+      "likes": 9,
+      "id": "1hRxmi-"
+    }
+  ]
+}
