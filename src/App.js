@@ -15,6 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { auth } from './firebase';
 import { useEffect, useState } from 'react';
 import AuthContext from './contexts/AuthContext';
+import isAuth from './guards/isAuth';
 
 function App() {
 
@@ -45,10 +46,10 @@ function App() {
                     <Route path="/dashboard/category/:category" component={Dashboard} />
                     <Route path="/login" exact component={Login} />
                     <Route path="/register" exact component={Register} />
-                    <Route path="/my-pets" exact component={MyPets} />
-                    <Route path="/add-pet" exact component={Create} />
-                    <Route path="/details/:petId" exact component={Details} />
-                    <Route path="/edit/:petId" exact component={Edit} />
+                    <Route path="/my-pets" exact component={isAuth(MyPets)} />
+                    <Route path="/add-pet" exact component={isAuth(Create)} />
+                    <Route path="/details/:petId" exact component={isAuth(Details)} />
+                    <Route path="/edit/:petId" exact component={isAuth(Edit)} />
                     <Route path="/logout" render={() => {
                         auth.signOut()
                             .then(() => setUser(null));

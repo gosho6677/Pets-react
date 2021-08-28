@@ -19,6 +19,7 @@ nav.navbar {
   }
   #site-header > nav > section.navbar-dashboard > form > input[type="text"],
   #site-header > nav > section.navbar-anonymous > ul > li:nth-child(1) > a,
+  #site-header > nav > section.navbar-anonymous > ul > li:nth-child(2) > a,
   #site-header > nav > section.navbar-user > ul > li:nth-child(1),
   #site-header > nav > section.navbar-dashboard > ul > li:nth-child(1) > a{
       margin-right: 0.5rem;
