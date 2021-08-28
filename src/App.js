@@ -28,13 +28,20 @@ function App() {
             }
             return;
         });
-    }, [user]);
+    }, []);
     
     const userInfo = {
         isAuthenticated: Boolean(user),
         username: user?.email
     };
-
+    // TODO: 
+    /* 
+        1. set user (owner) id's on created db.json items
+        2. create pet service to include owner id
+        3. set isGuest route guard
+        4. set isOwner route guard
+        5. create myPets functionality
+    */
     return (
         <>
             <AuthContext.Provider value={userInfo}>
