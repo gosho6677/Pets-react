@@ -1,17 +1,16 @@
-import { auth } from '../../firebase';
+import authService from '../../services/authService';
 
 const Login = ({ history }) => {
     const loginHandler = (e) => {
-        // TODO -> move into Auth Services folder
         e.preventDefault();
 
-        const username = e.target.username.value;
+        const email = e.target.username.value;
         const password = e.target.password.value;
 
-        if(!username || !password) return;
+        if(!email || !password) return;
 
-        auth.signInWithEmailAndPassword(username, password)
-            .then(() => history.push('/'))
+        authService.login(email, password)
+            .then(() => history.push('/dashboard'))
             .catch(err => console.error(err));
     };
     

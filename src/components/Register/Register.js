@@ -1,16 +1,16 @@
-import { auth } from '../../firebase';
+import authService from '../../services/authService';
 
 const Register = ({ history }) => {
 
     const registerHandler = e => {
         e.preventDefault();
 
-        const username = e.target.username.value;
+        const email = e.target.username.value;
         const password = e.target.password.value;
 
-        if (!username || !password) return;
+        if (!email || !password) return;
 
-        auth.createUserWithEmailAndPassword(username, password)
+        authService.register(email, password) 
             .then(() => history.push('/'))
             .catch(err => console.error(err));
     };

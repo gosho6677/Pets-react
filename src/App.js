@@ -14,6 +14,7 @@ import { Redirect } from 'react-router-dom';
 
 import { auth } from './firebase';
 import { useEffect, useState } from 'react';
+import AuthContext from './contexts/AuthContext';
 
 function App() {
 
@@ -28,8 +29,14 @@ function App() {
         });
     }, [user]);
     
+    const userInfo = {
+        isAuthenticated: Boolean(user),
+        username: user?.email
+    };
+
     return (
-        <div>
+        <>
+            <AuthContext.Provider value={userInfo}>
             <Navigation />
             <main id="site-content">
                 <Switch>
@@ -43,12 +50,14 @@ function App() {
                     <Route path="/details/:petId" exact component={Details} />
                     <Route path="/edit/:petId" exact component={Edit} />
                     <Route path="/logout" render={() => {
-                        auth.signOut();
+                        auth.signOut()
+                            .then(() => setUser(null));
                         return <Redirect to="/" />;
                     }} />
                 </Switch>
             </main>
-        </div>
+            </AuthContext.Provider>
+        </>
     );
 }
 
