@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import AuthContext from './contexts/AuthContext';
 import isGuest from './guards/isGuest';
 import isAuth from './guards/isAuth';
+import NotFound from './components/NotFound';
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
                             .then(() => setUser(null));
                         return <Redirect to="/" />;
                     }} />
+                    <Route path="*" component={NotFound} />
                 </Switch>
             </main>
             </AuthContext.Provider>

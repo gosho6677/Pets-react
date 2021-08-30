@@ -13,6 +13,8 @@ const Details = ({ match, history }) => {
         petService.getById(id)
             .then(setPet)
             .catch(err => console.error(err));
+
+        return () => setPet({});
     }, [id]);
 
     const deleteHandler = () => {
