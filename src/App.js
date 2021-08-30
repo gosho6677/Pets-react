@@ -41,7 +41,7 @@ function App() {
         [x]2. create pet service to include owner id
         [x]3. set isGuest route guard
         [x]4. set edit/delete guard
-        5. create myPets functionality
+        [x]5. create myPets functionality
         6. add notifications
     */
     return (
