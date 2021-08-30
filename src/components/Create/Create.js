@@ -1,18 +1,22 @@
 import { useState, useContext } from 'react';
 import petService from '../../services/petService';
 import AuthContext from '../../contexts/AuthContext';
+import ErrorBox from '../Notifications/ErrorBox';
 
 const Create = ({ history }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [category, setCategory] = useState('cats');
+    const [error, setError] = useState('');
     const { userId } = useContext(AuthContext);
 
     const submitHandler = e => {
         e.preventDefault();
 
         if (!name || !description || !imageURL) {
+            setError('All fields are required');
+            console.log(error);
             return;
         }
         petService.create({ name, description, imageURL, category, ownerId: userId })
@@ -24,6 +28,7 @@ const Create = ({ history }) => {
 
     return (
         <section className="create">
+            {error && <ErrorBox error={error} setError={setError} />}
             <form onSubmit={submitHandler}>
                 <fieldset>
                     <legend>Add new Pet</legend>

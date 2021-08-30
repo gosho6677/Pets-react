@@ -1,21 +1,31 @@
+import { useState } from 'react';
 import authService from '../../services/authService';
+import ErrorBox from '../Notifications/ErrorBox';
 
 const Login = ({ history }) => {
+    const [error, setError] = useState('');
+
     const loginHandler = (e) => {
         e.preventDefault();
 
         const email = e.target.username.value;
         const password = e.target.password.value;
 
-        if(!email || !password) return;
+        if(!email || !password) {
+            setError('All fields are required!');
+            return;
+        }
 
         authService.login(email, password)
             .then(() => history.push('/dashboard'))
-            .catch(err => console.error(err));
+            .catch(err => {
+                setError(err.message);
+            });
     };
     
     return (
         <section className="login">
+            {error && <ErrorBox error={error} setError={setError} />}
             <form onSubmit={loginHandler}>
                 <fieldset>
                     <legend>Login</legend>

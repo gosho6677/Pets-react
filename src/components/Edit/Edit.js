@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import petService from '../../services/petService';
+import ErrorBox from "../Notifications/ErrorBox";
 
 const Edit = ({ match, history }) => {
     const id = match.params.petId;
     const [pet, setPet] = useState({});
+    const [error, setError] = useState('');
 
     useEffect(() => {
         petService.getById(id)
@@ -15,6 +17,7 @@ const Edit = ({ match, history }) => {
         e.preventDefault();
 
         if (!pet.description) {
+            setError('Description is required!');
             return;
         }
 
@@ -23,11 +26,14 @@ const Edit = ({ match, history }) => {
                 console.log(res);
                 history.push(`/details/${id}`);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+            });
     };
 
     return (
         <section className="deletePet">
+            {error && <ErrorBox error={error} setError={setError} />}
             <h3>{pet.name}</h3>
             <p>Pet counter: <i className="fas fa-heart"></i>{pet.likes}</p>
             <p className="img"><img src={pet.imageURL} alt="" /></p>

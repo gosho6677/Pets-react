@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import authService from '../../services/authService';
+import ErrorBox from '../Notifications/ErrorBox';
 
 const Register = ({ history }) => {
+    const [error, setError] = useState('');
 
     const registerHandler = e => {
         e.preventDefault();
@@ -8,15 +11,21 @@ const Register = ({ history }) => {
         const email = e.target.username.value;
         const password = e.target.password.value;
 
-        if (!email || !password) return;
+        if(!email || !password) {
+            setError('All fields are required!');
+            return;
+        }
 
         authService.register(email, password) 
             .then(() => history.push('/'))
-            .catch(err => console.error(err));
+            .catch(err => {
+                setError(err.message);
+            });
     };
 
     return (
         <section className="register">
+            {error && <ErrorBox error={error} setError={setError} />}
             <form onSubmit={registerHandler}>
                 <fieldset>
                     <legend>Register</legend>
