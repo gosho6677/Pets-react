@@ -11,7 +11,7 @@ const Details = ({ match, history }) => {
 
     useEffect(() => {
         petService.getById(id)
-            .then(p => setPet(p))
+            .then(setPet)
             .catch(err => console.error(err));
     }, [id]);
 

@@ -15,6 +15,13 @@ const getById = (id) => {
         .catch(err => console.error(err));
 };
 
+const getMyPets = (userId) => {
+    const url = `${baseUrl}?ownerId=${userId}`;
+    return fetch(url)
+        .then(res => res.json())
+        .catch(err => console.error(err));
+};
+
 const create = body => {
     return fetch(baseUrl, {
         method: 'POST',
@@ -63,6 +70,7 @@ const del = (id) => {
 const exports = {
     getAll,
     getById,
+    getMyPets,
     create,
     pet,
     edit,
