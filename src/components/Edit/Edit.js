@@ -13,10 +13,11 @@ const Edit = ({ match, history }) => {
 
     const submitHandler = e => {
         e.preventDefault();
-        // console.log(id);
+
         if (!pet.description) {
             return;
         }
+
         petService.edit(pet, id)
             .then((res) => {
                 console.log(res);

@@ -90,6 +90,10 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* border: 2px solid; */
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .detailsMyPet>p:nth-child(2),
@@ -102,7 +106,6 @@ img {
 
 .dashboard>nav>ul {
     display: flex;
-
 }
 
 .dashboard>nav>ul li:not(:last-child) {
@@ -139,6 +142,10 @@ h3 {
     display: flex;
     flex-direction: column;
     padding-bottom: 1rem;
+}
+
+section {
+    background-color: rgba(236, 233, 233, 0.1);
 }
 
 .my-pets .my-pets-list,

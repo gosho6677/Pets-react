@@ -15,6 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { auth } from './firebase';
 import { useEffect, useState } from 'react';
 import AuthContext from './contexts/AuthContext';
+import isGuest from './guards/isGuest';
 import isAuth from './guards/isAuth';
 
 function App() {
@@ -29,18 +30,19 @@ function App() {
             return;
         });
     }, []);
-    
     const userInfo = {
         isAuthenticated: Boolean(user),
-        username: user?.email
+        username: user?.email,
+        userId: user?.uid
     };
     // TODO: 
     /* 
-        1. set user (owner) id's on created db.json items
-        2. create pet service to include owner id
-        3. set isGuest route guard
-        4. set isOwner route guard
+        [x]1. set user (owner) id's on created db.json items
+        [x]2. create pet service to include owner id
+        [x]3. set isGuest route guard
+        [x]4. set edit/delete guard
         5. create myPets functionality
+        6. add notifications
     */
     return (
         <>
@@ -48,15 +50,15 @@ function App() {
             <Navigation />
             <main id="site-content">
                 <Switch>
-                    <Route path="/" exact component={Home} />
+                    <Route path="/" exact component={isAuth(Home)} />
                     <Route path="/dashboard" exact component={Dashboard} />
                     <Route path="/dashboard/category/:category" component={Dashboard} />
-                    <Route path="/login" exact component={Login} />
-                    <Route path="/register" exact component={Register} />
-                    <Route path="/my-pets" exact component={isAuth(MyPets)} />
-                    <Route path="/add-pet" exact component={isAuth(Create)} />
-                    <Route path="/details/:petId" exact component={isAuth(Details)} />
-                    <Route path="/edit/:petId" exact component={isAuth(Edit)} />
+                    <Route path="/login" exact component={isAuth(Login)} />
+                    <Route path="/register" exact component={isAuth(Register)} />
+                    <Route path="/my-pets" exact component={isGuest(MyPets)} />
+                    <Route path="/add-pet" exact component={isGuest(Create)} />
+                    <Route path="/details/:petId" exact component={isGuest(Details)} />
+                    <Route path="/edit/:petId" exact component={isGuest(Edit)} />
                     <Route path="/logout" render={() => {
                         auth.signOut()
                             .then(() => setUser(null));

@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import petService from '../../services/petService';
+import AuthContext from '../../contexts/AuthContext';
 
 const Create = ({ history }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [category, setCategory] = useState('cats');
+    const { userId } = useContext(AuthContext);
 
     const submitHandler = e => {
         e.preventDefault();
@@ -13,7 +15,7 @@ const Create = ({ history }) => {
         if (!name || !description || !imageURL) {
             return;
         }
-        petService.create({ name, description, imageURL, category })
+        petService.create({ name, description, imageURL, category, ownerId: userId })
             .then(() => {
                 history.push('/dashboard');
             })

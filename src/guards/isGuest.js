@@ -1,13 +1,15 @@
+// import AuthContext from '../contexts/AuthContext';
+// import { useContext } from 'react';
 import { useHistory } from 'react-router';
 import { auth } from '../firebase';
 
-const isAuth = (WrappedComponent) => {
+const isGuest = (WrappedComponent) => {
     const Component = props => {
         const history = useHistory();
 
         auth.onAuthStateChanged(userCredential => {
-            if (userCredential) {
-                history.push('/dashboard');
+            if (!userCredential) {
+                history.push('/login');
                 return null;
             }
         });
@@ -17,4 +19,4 @@ const isAuth = (WrappedComponent) => {
     return Component;
 };
 
-export default isAuth;
+export default isGuest;

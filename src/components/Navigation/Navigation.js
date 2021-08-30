@@ -26,8 +26,8 @@ const Navigation = () => {
                     : <section className="navbar-anonymous">
                         <ul>
                             <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                            <li><NavLink to="/register"><i className="fas fa-user-plus"></i> Register</NavLink></li>
                             <li><NavLink to="/login"><i className="fas fa-sign-in-alt"></i> Login</NavLink></li>
+                            <li><NavLink to="/register"><i className="fas fa-user-plus"></i> Register</NavLink></li>
                         </ul>
                     </section>
                 }
